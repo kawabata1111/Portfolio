@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
 const Footer: React.FC = () => {
@@ -7,16 +6,15 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-black border-t border-white/10">
-      {/* Main Footer */}
       <div className="max-w-[1600px] mx-auto px-6 md:px-12 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
           <div>
-            <Link to="/" className="inline-block cursor-hover">
+            <a href="#" className="inline-block cursor-hover">
               <div className="font-sans font-bold text-2xl tracking-tighter text-white">
                 NEXUS<span className="text-accent">.</span>
               </div>
-            </Link>
+            </a>
             <p className="text-gray-500 text-sm mt-4 leading-relaxed">
               デジタルとクリエイティブの力で<br />
               ビジネスの未来を切り拓く。
@@ -28,29 +26,29 @@ const Footer: React.FC = () => {
             <h4 className="font-mono text-xs text-gray-500 mb-6 tracking-widest">NAVIGATION</h4>
             <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-white transition-colors cursor-hover">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors cursor-hover">
                   Home
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/about" className="text-gray-400 hover:text-white transition-colors cursor-hover">
-                  About
-                </Link>
+                <a href="#services" className="text-gray-400 hover:text-white transition-colors cursor-hover">
+                  Expertise
+                </a>
               </li>
               <li>
-                <Link to="/works" className="text-gray-400 hover:text-white transition-colors cursor-hover">
+                <a href="#philosophy" className="text-gray-400 hover:text-white transition-colors cursor-hover">
+                  Philosophy
+                </a>
+              </li>
+              <li>
+                <a href="#works" className="text-gray-400 hover:text-white transition-colors cursor-hover">
                   Works
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/news" className="text-gray-400 hover:text-white transition-colors cursor-hover">
-                  News
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors cursor-hover">
+                <a href="#contact" className="text-gray-400 hover:text-white transition-colors cursor-hover">
                   Contact
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -105,12 +103,12 @@ const Footer: React.FC = () => {
             &copy; {currentYear} NEXUS Inc. All Rights Reserved.
           </div>
           <div className="flex gap-6">
-            <Link to="/privacy" className="text-gray-500 hover:text-white transition-colors text-sm cursor-hover">
+            <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm cursor-hover">
               Privacy Policy
-            </Link>
-            <Link to="/terms" className="text-gray-500 hover:text-white transition-colors text-sm cursor-hover">
+            </a>
+            <a href="#" className="text-gray-500 hover:text-white transition-colors text-sm cursor-hover">
               Terms of Service
-            </Link>
+            </a>
           </div>
         </div>
       </div>
