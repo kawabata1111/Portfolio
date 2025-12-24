@@ -26,9 +26,11 @@ const Philosophy: React.FC = () => {
             {/* Image Side */}
             <div className="relative aspect-[3/4] overflow-hidden w-full md:w-[80%] ml-auto">
                 <motion.div style={{ y }} className="absolute inset-0 w-full h-[120%] -top-[10%]">
-                     <img 
-                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop" 
-                        alt="Office Abstract" 
+                     <img
+                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop"
+                        alt="Office Abstract"
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover grayscale contrast-100 opacity-80"
                     />
                 </motion.div>
@@ -65,14 +67,56 @@ const Philosophy: React.FC = () => {
                     </div>
                 </motion.div>
 
-                <div className="flex gap-12 border-t border-white/10 pt-8">
+                {/* Core Values */}
+                <div className="mb-12 grid grid-cols-1 gap-6">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="border-l-2 border-accent pl-6"
+                    >
+                        <h4 className="font-sans text-lg font-medium text-white mb-2">Precision</h4>
+                        <p className="text-sm text-gray-500">細部へのこだわりが、全体の品質を決定する。</p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="border-l-2 border-accent pl-6"
+                    >
+                        <h4 className="font-sans text-lg font-medium text-white mb-2">Innovation</h4>
+                        <p className="text-sm text-gray-500">常識を疑い、新しい可能性を探求し続ける。</p>
+                    </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="border-l-2 border-accent pl-6"
+                    >
+                        <h4 className="font-sans text-lg font-medium text-white mb-2">Partnership</h4>
+                        <p className="text-sm text-gray-500">クライアントと共に、ビジョンを現実にする。</p>
+                    </motion.div>
+                </div>
+
+                {/* Stats */}
+                <div className="flex flex-wrap gap-8 md:gap-12 border-t border-white/10 pt-8">
                     <div>
-                        <div className="font-serif text-4xl mb-1">2024</div>
-                        <div className="font-mono text-xs text-gray-500">AWWARDS</div>
+                        <div className="font-serif text-4xl mb-1">150+</div>
+                        <div className="font-mono text-xs text-gray-500">PROJECTS</div>
+                    </div>
+                    <div>
+                        <div className="font-serif text-4xl mb-1">98%</div>
+                        <div className="font-mono text-xs text-gray-500">SATISFACTION</div>
                     </div>
                     <div>
                         <div className="font-serif text-4xl mb-1">15+</div>
                         <div className="font-mono text-xs text-gray-500">COUNTRIES</div>
+                    </div>
+                    <div>
+                        <div className="font-serif text-4xl mb-1">8</div>
+                        <div className="font-mono text-xs text-gray-500">AWARDS</div>
                     </div>
                 </div>
             </div>

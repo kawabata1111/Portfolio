@@ -20,16 +20,16 @@ const Hero: React.FC<HeroProps> = ({ startAnimation }) => {
   const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section ref={ref} className="relative w-full min-h-screen flex flex-col justify-center bg-[#050505] overflow-hidden px-6 md:px-12">
-      
+    <section ref={ref} className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden px-6 md:px-12" style={{ background: 'radial-gradient(ellipse at center, #0a1628 0%, #050510 50%, #020205 100%)' }}>
+
       {/* 3D Background - Z-0 */}
       <motion.div style={{ y: bgY, opacity: bgOpacity }} className="absolute inset-0 w-full h-full z-0">
         {/* Render 3D Scene. We wait for startAnimation to be potentially cleaner, but rendering immediately looks better for continuity under preloader */}
         <Scene3D className="w-full h-full" />
-        
+
         {/* Overlay gradient to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#050505]/50 via-transparent to-[#050505]/50 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050510] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050510]/50 via-transparent to-[#050510]/50 pointer-events-none" />
       </motion.div>
 
       {/* Main Content - Z-10 */}
@@ -39,11 +39,13 @@ const Hero: React.FC<HeroProps> = ({ startAnimation }) => {
               We use manual 'start' control for these TextReveals.
               delay is relative to when startAnimation becomes true (after preloader exit).
             */}
-            <div className="font-serif font-medium text-[13vw] leading-[0.85] tracking-tighter text-white mix-blend-screen">
-                <TextReveal start={startAnimation} delay={0.2}>未来を</TextReveal>
-            </div>
-            <div className="pl-[10vw] lg:pl-[15vw] font-serif font-medium text-[13vw] leading-[0.85] tracking-tighter text-white italic mix-blend-screen">
-                <TextReveal start={startAnimation} delay={0.4}>実装せよ</TextReveal>
+            <div className="font-serif font-medium text-[10vw] leading-[1.1] tracking-tighter text-white mix-blend-screen">
+                <div className="ml-[5vw]">
+                    <TextReveal start={startAnimation} delay={0.2}>未来を</TextReveal>
+                </div>
+                <div className="ml-[15vw] italic">
+                    <TextReveal start={startAnimation} delay={0.4}>実装せよ</TextReveal>
+                </div>
             </div>
         </div>
 

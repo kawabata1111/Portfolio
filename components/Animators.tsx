@@ -14,31 +14,58 @@ interface TextRevealProps {
 }
 
 export const TextReveal: React.FC<TextRevealProps> = ({ children, className = "", delay = 0, start }) => {
-  // Split text into characters
   const chars = Array.from(children);
-  
-  // Determine animation props based on whether manual 'start' control is used
   const isManualControl = start !== undefined;
-  
-  // If manual control is used, we animate when start is true.
-  // If not, we animate whileInView.
-  const animationProps = isManualControl 
-    ? { animate: start ? { y: 0 } : { y: "110%" } }
-    : { initial: { y: "110%" }, whileInView: { y: 0 }, viewport: { once: true } };
+
+  // グリッチアニメーション
+  const glitchVariants = {
+    hidden: {
+      opacity: 0,
+      x: () => Math.random() * 40 - 20,
+      y: () => Math.random() * 40 - 20,
+      scale: 0.8,
+      filter: "blur(10px)",
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+    }
+  };
 
   return (
-    <span className={`inline-block overflow-hidden align-bottom pb-[0.1em] -mb-[0.1em] ${className}`}>
+    <span className={`inline-block overflow-visible align-bottom pb-[0.1em] -mb-[0.1em] ${className}`}>
       {chars.map((char, i) => (
         <motion.span
           key={i}
-          initial={{ y: "110%" }}
-          {...animationProps}
-          transition={{ 
-            duration: 1, 
-            ease: [0.16, 1, 0.3, 1], // Very smooth easing
-            delay: delay + i * 0.05 
+          initial="hidden"
+          animate={isManualControl ? (start ? "visible" : "hidden") : undefined}
+          whileInView={!isManualControl ? "visible" : undefined}
+          viewport={!isManualControl ? { once: true } : undefined}
+          variants={glitchVariants}
+          transition={{
+            duration: 0.6,
+            delay: delay + i * 0.08,
+            ease: [0.16, 1, 0.3, 1],
+            opacity: { duration: 0.3 },
+            filter: { duration: 0.4 },
+            x: {
+              duration: 0.5,
+              type: "spring",
+              stiffness: 200,
+              damping: 15
+            },
+            y: {
+              duration: 0.5,
+              type: "spring",
+              stiffness: 200,
+              damping: 15
+            }
           }}
           className="inline-block whitespace-pre"
+          style={{ textShadow: "0 0 10px rgba(255,255,255,0.5)" }}
         >
           {char}
         </motion.span>
@@ -110,7 +137,7 @@ export const ParallaxImage: React.FC<ParallaxImageProps> = ({ src, alt, classNam
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
       <motion.div style={{ y, scale }} className="w-full h-[120%] -mt-[10%]">
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
+        <img src={src} alt={alt} loading="lazy" decoding="async" className="w-full h-full object-cover" />
       </motion.div>
     </div>
   );
